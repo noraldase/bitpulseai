@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Flash</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .green-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #00FF00;
+            z-index: 10;
+            animation: flash 1s forwards;
+        }
+        @keyframes flash {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        #power-button {
+            display: none;
+            background-color: rgb(57, 243, 0);
+            color: rgb(0, 0, 0);
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <div class="green-screen" id="greenScreen"></div>
+    <button id="power-button" onclick="goToHome()">TURN ON</button>
+
+    <script>
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('greenScreen').style.display = 'none';
+                document.getElementById('power-button').style.display = 'block';
+            }, 1000); // 1 second delay
+        };
+
+        function goToHome() {
+            window.location.href = 'home.html';
+        }
+    </script>
+</body>
+</html>
