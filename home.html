@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BitPulseAI</title>
+    <style>
+        /* Reset dan dasar styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1c2b42; /* Biru gelap */
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #page-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000; /* Warna hitam */
+            z-index: 1000; /* Pastikan di atas semua elemen lain */
+            opacity: 1;
+            transition: opacity 1s ease; /* Efek fade-in selama 2 detik */
+        }
+
+        #page-overlay.hidden {
+            opacity: 0;
+            pointer-events: none; /* Agar overlay tidak menghalangi interaksi setelah hilang */
+        }
+
+        .oracle {
+            color: #FFD700; /* Warna kuning hanya untuk "Oracle" */
+        }
+
+
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Jam New York */
+        .ny-time {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* BitPulseAI logo or text */
+        .bitpulseai {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .bitpulseai .ai {
+            color: #FFD700; /* Warna kuning hanya untuk "AI" */
+        }
+
+        .bitpulse-section {
+            display: flex;
+            justify-content: center; /* Menjaga konten di tengah horizontal */
+            align-items: center; /* Menjaga konten di tengah vertikal */
+            height: 100vh; /* Tinggi penuh layar */
+            background-color: #282828;
+            padding: 20px;
+        }
+
+        .bitpulse-content {
+            text-align: center; /* Semua elemen di tengah secara horizontal */
+            color: #fff;
+            max-width: 800px; /* Batasi lebar konten */
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('image/bitpulsekomputer.webp') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(50, 112, 205, 0.5); /* Garis hijau tipis dengan blur */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero .content {
+            z-index: 1;
+            color: #fff;
+        }
+
+        .hero .logo {
+            margin-bottom: 20px;
+        }
+
+        .hero .logo img {
+            width: 120px;  /* Ukuran awal logo */
+            height: 120px;
+            border-radius: 50%;  /* Membuat gambar menjadi bulat */
+            border: 3px solid #fff;  /* Menambahkan border putih di sekitar logo */
+            transition: transform 0.3s ease;  /* Animasi halus saat berubah ukuran */
+        }
+
+        .hero .logo img:active {
+            transform: scale(1.3); /* Membesarkan ukuran logo saat ditekan */
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: #ff6a00;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ff4500;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 60px 20px;
+            background-color: #222;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(182, 30, 182, 0.5); /* Garis hijau tipis dengan blur */
+        }
+
+        .feature {
+            width: 30%;
+        }
+
+        .feature-list {
+            list-style: none; /* Menghapus tanda bullet */
+            padding-left: 20px; /* Memberikan sedikit indentasi pada list */
+            text-align: left; /* Menjaga teks tetap sejajar kiri */
+        }
+
+        .feature-list li {
+            font-size: 1.1em;
+            margin-bottom: 10px; /* Memberikan jarak antar item */
+        }
+
+
+        .feature h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .featue h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .left-align {
+            text-align: left; /* Menjaga <h2> pertama tetap di kiri */
+        }
+
+        .center-align {
+            text-align: center; /* Menyelaraskan <h2> kedua ke tengah */
+        }
+
+        .right-align {
+            text-align: right; /* Menyelaraskan <h2> kedua ke kanan */
+        }
+
+        .feature p {
+            font-size: 1.1em;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center; /* Menyelaraskan tanda '>' dan teks secara vertikal */
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            text-align: left; /* Menyelaraskan teks ke kiri di dalam <p> */
+            width: 100%; /* Agar <p> mengisi lebar kontainer */
+            justify-content: center; /* Menyelaraskan teks secara horizontal ke tengah */
+        }
+
+        .feature-item .icon {
+            font-size: 1.1em;  /* Ukuran tanda '>' bisa lebih besar atau kecil */
+            margin-right: 10px; /* Memberikan jarak antara tanda '>' dan teks */
+            color: #fff; /* Warna tanda '>' */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 14px;
+            box-shadow: 0 -2px 5px rgba(207, 76, 219, 0.5); /* Garis hijau tipis dengan blur */
+        }
+
+        footer .social-links {
+            margin-bottom: 10px;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        footer .social-links a:hover {
+            color: #ff6a00;
+        }
+
+        footer p {
+            color: #bbb;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature {
+                width: 80%;
+                margin-bottom: 30px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        .small-text {
+            font-size: 0.8em; /* Mengurangi ukuran font */
+            color: #bbb; /* Opsional, mengubah warna menjadi abu-abu agar lebih soft */
+        }
+
+        .feature-list li {
+            font-size: 0.8em; /* Ukuran font default */
+            margin-bottom: 10px; /* Memberikan jarak antar item */
+        }
+
+            /* Deskripsi */
+        .hero .description {
+            font-size: 1.5em; /* Ukuran teks */
+            line-height: 1.4; /* Jarak antar baris teks (lebih kecil dari default 1.6) */
+            margin-bottom: 20px; /* Jarak dengan elemen di bawahnya */
+            color: #ccc; /* Warna teks */
+            text-align: justify; /* Rata kiri-kanan */
+            max-width: 700px;
+            background-color: rgba(0, 0, 0, 0.788); /* Warna background */
+            display: block; /* Pastikan background hanya mengikuti panjang teks */
+            padding: 8px; /* Tambahkan ruang di sekitar teks */
+            border-radius: 4px; /* Sudut melengkung untuk estetika */
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <div id="page-overlay"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="bitpulseai">BitPulse<span class="ai">AI</span></div> <!-- "AI" berwarna kuning -->
+        <div class="ny-time" id="ny-time">Loading...</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="content">
+            <div class="logo">
+            <img src="image/logobitpulse.webp" alt="Degen Oracle Logo"> <!-- Ganti dengan logo bulat Anda -->    
+            </div>
+            <h1>BitPulse<span class="oracle">AI</span></h1> <!-- "Oracle" berwarna kuning -->
+            <p class="description">BitPulseAI is an artificial intelligence agent designed to provide in-depth crypto market insights and advanced analysis tools for investors and traders. Built with proprietary algorithms, BitPulseAI helps users identify market trends, analyze real-time price data, and make more informed and calculated trading decisions. </p>
+            <p class="description">With continuously evolving AI features, BitPulseAI delivers technical analysis, price predictions, and narrative analysis, offering an edge in navigating the ever-changing crypto markets. BitPulseAI is not just an analytics platform but also an ecosystem integrated with various blockchain networks and global markets, giving users a competitive advantage in trading.</p>
+
+            <a href="#" class="cta-button">BUY NOW</a>
+        </div>
+    </section>
+                
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <h2 class="left-align">Phase 1: Launch Phase</h2>
+            <p> Website Unveiling</p>
+            <li class="small-text">Reveal the official website to serve as the central hub for all BitPulseAI information, updates, and community engagement.</li>
+            <p> Token Debut</p>
+            <li class="=small-text">The official introduction of BitPulseAI’s token to the market, setting the stage for a decentralized ecosystem.</li>
+            <p> Social Media Engagement</p>
+            <li class="small-text">Establishing a strong presence across key social media platforms to connect with our growing community and share valuable insights.</li>
+            <p> Community Growth & Activation</p>
+            <li class="small-text">Cultivating a dedicated and passionate community through events, interactive discussions, and exclusive content to build long-term engagement.</li>
+        </div>
+        <div class="feature">
+            <h2>Phase 2: Expansion</h2>
+            <p class="feature-item"><span class="icon"></span> Next-Generation AI Capabilities</p>
+            <li class="small-text">Introducing cutting-edge AI features that push the boundaries of market analysis and decision-making support.</li>
+            <p class="feature-item"><span class="icon"></span> Strategic Partnership Network</p>
+            <li class="small-text">Building strong alliances with key players in the crypto and blockchain ecosystems to amplify reach and drive collaborative growth.</li>
+            <p class="feature-item"><span class="icon"></span> Advanced Data Insights</p>
+            <li class="small-text">Expanding the platform’s analytics tools to deliver deeper, more actionable insights for users, enhancing their trading strategies.</li
+            <p class="feature-item"><span class="icon"></span> Market Connectivity</p>
+            <li class="small-text">Seamlessly integrating with additional market platforms and networks to broaden access to data and improve trading opportunities.</li>
+        </div>               
+        <div class="feature">
+            <h2>Phase 3: Evolution </h2>
+            <p> AI-Powered Trading Assistant</p>
+            <li class="small-text">Introducing an intelligent trading bot powered by advanced AI to automate and optimize trading strategies for all users.</li>
+            <p> Global Market Reach</p>
+            <li class="small-text">Expanding our footprint across international markets, engaging with global crypto communities and adapting to regional demands.</li>
+            <p> Ecosystem Enhancement</p>
+            <li class="small-text">Evolving the BitPulseAI ecosystem with additional tools, services, and integrations that empower users to navigate and grow within the crypto space.</li>
+        </div>
+    </section>
+        
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#">Twitter</a>
+            <a href="#">Telegram</a>
+        </div>
+        <p>&copy; 2025 BitPulseAI. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Fungsi untuk menampilkan waktu New York
+        function updateNYTime() {
+            const options = {
+                timeZone: 'America/New_York',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+
+            const nyTime = new Date().toLocaleTimeString('en-US', options);
+            document.getElementById('ny-time').textContent = nyTime;
+        }
+
+        // Update waktu setiap detik
+        setInterval(updateNYTime, 1000);
+        updateNYTime(); // Panggil pertama kali untuk menunjukkan waktu tanpa menunggu detik pertama
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('page-overlay');
+            const body = document.body;
+
+            // Tunggu beberapa detik lalu sembunyikan overlay
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                // Tambahkan kelas 'visible' ke body untuk memulai fade-in
+                body.classList.add('visible');
+            }, 1000); // Durasi sebelum mulai fade-out
+        });
+    </script>
+
+</body>
+</html>
