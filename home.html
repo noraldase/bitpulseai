@@ -189,6 +189,12 @@
         }
 
         /* Responsiveness */
+        @media (min-width: 1024px) {
+        .hero .description {
+            font-size: 1.4em; /* Ukuran font lebih besar untuk layar besar */
+            max-width: 60%; /* Lebar lebih sempit agar teks lebih fokus */
+            line-height: 1.8; /* Jarak antar baris lebih longgar */
+        }
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -206,6 +212,12 @@
             .cta-button {
                 font-size: 12px;
                 padding: 8px 16px;
+            }
+            .hero .description {
+                font-size: 1.2em; /* Perbesar ukuran font untuk layar yang lebih besar */
+                line-height: 1.6; /* Jarak antar baris lebih longgar di desktop */
+                max-width: 70%; /* Batasi lebar teks agar lebih rapi di desktop */
+                padding: 15px; /* Tambahkan padding lebih besar untuk estetika */
             }
         }
 
@@ -240,15 +252,13 @@
         }
 
         .hero .description {
-            font-size: 0.9em; /* Ukuran teks */
-            line-height: 1.4; /* Jarak antar baris teks (lebih kecil dari default 1.6) */
+            font-size: 1em; /* Ukuran teks */
+            line-height: 1.5; /* Jarak antar baris teks (lebih kecil dari default 1.6) */
             margin-bottom: 20px; /* Jarak dengan elemen di bawahnya */
             color: #ffffff; /* Warna teks */
             text-align: justify; /* Rata kiri-kanan */
-            max-width: 800px;
             background-color: rgba(0, 0, 0, 0.726); /* Warna background */
             display: block; /* Pastikan background hanya mengikuti panjang teks */
-            padding: 8px; /* Tambahkan ruang di sekitar teks */
             border-radius: 4px; /* Sudut melengkung untuk estetika */
             padding: 10px;
             max-width: 90%;
@@ -292,13 +302,6 @@
     .logo-group img:hover {
             transform: scale(1.2); /* Perbesar saat di-hover */
     }
-    @media (max-width: 480px) {
-    .logo-group img {
-             width: 30px;
-            height: 30px;
-        }
-    }
-
 
 
     </style>
