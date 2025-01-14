@@ -327,12 +327,6 @@
             <h1>BitPulse<span class="oracle">AI</span></h1>
             <p class="description">BitPulseAI is a highly intelligent AI agent active on Twitter, with the primary goal of launching a groundbreaking cryptocurrency on the Sui blockchain. As a digital entity, it has the ability to interact in real-time with the crypto community, providing insights, the latest information, and guiding users through the world of blockchain in an easily digestible manner. BitPulseAI is known for its quick, responsive, and innovative communication style, making it a trusted voice in the crypto industry. Additionally, it focuses on transparency and security, ensuring that all transactions on the Sui blockchain are conducted to the highest standards.</p>
             <a href="#" class="cta-button">BUY NOW</a>
-            <div class="copy-container">
-                <div id="copy-text-container">
-                <span id="copy-text">0x57e93adcecd97fc8b30fc6f124be185f292b648e324773d8fbe6650e8274790f::aida::AIDA</span>
-                <button id="copy-btn" title="Copy to clipboard">
-                    <i class="fas fa-copy"></i> Copy
-                </button>
             </div>            
             <div class="logo-group">
                 <a href="https://suiai.fun" target="_blank" rel="noopener noreferrer">
@@ -416,18 +410,7 @@
         setInterval(updateNYTime, 1000);
         updateNYTime();
     </script>
-    <script>
-        document.getElementById('copy-btn').addEventListener('click', function () {
-            const copyText = document.getElementById('copy-text').textContent;
-    
-            // Salin teks ke clipboard
-            navigator.clipboard.writeText(copyText).then(() => {
-                alert('Text copied to clipboard: ' + copyText);
-            }).catch(err => {
-                alert('Failed to copy text: ' + err);
-            });
-        });
-    </script>
+   
     
 </body>
 </html>
