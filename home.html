@@ -249,49 +249,38 @@
             transition: color 0.3s ease;
         }
 
-        .social-links a i {
-            margin-right: 8px;
-            font-size: 20px;
-        }
-
-        .social-links a:hover {
-            color: #ff6a00;
-        }
-
-        .logo-group {
-            margin-top: 20px;  /* Jarak dari tombol BUY NOW */
-            display: flex;
-            justify-content: center; /* Posisikan logo di tengah */
-            gap: 15px; /* Jarak antar logo */
-        }
-
-        .logo-group img {
-            width: 50px;  /* Ukuran logo */
-            height: 50px;
-            object-fit: contain;  /* Pastikan gambar tidak terpotong */
-            transition: transform 0.3s ease;  /* Efek transisi saat hover */
-        }
-
-        .logo-group img:hover {
-            transform: scale(1.2);  /* Perbesar logo saat di-hover */
-        }
-
-        /* Responsif di layar lebih kecil */
-        @media (max-width: 768px) {
-            .logo-group img {
-                width: 40px;
-                height: 40px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo-group img {
-                width: 30px;
-                height: 30px;
-        }
+    .social-links a i {
+        margin-right: 8px;
+        font-size: 20px;
     }
 
+    .social-links a:hover {
+        color: #ff6a00;
+    }
 
+    .logo-group {
+    margin-top: 20px; /* Beri jarak dari tombol */
+    display: flex;
+    justify-content: center; /* Posisikan di tengah */
+    gap: 10px; /* Jarak antar logo */
+}
+
+.logo-group img {
+    width: 40px; /* Ukuran logo */
+    height: 40px;
+    object-fit: contain; /* Pastikan gambar tidak terpotong */
+    transition: transform 0.3s ease; /* Efek transisi saat hover */
+}
+
+.logo-group img:hover {
+    transform: scale(1.2); /* Perbesar saat di-hover */
+}
+@media (max-width: 480px) {
+    .logo-group img {
+        width: 30px;
+        height: 30px;
+    }
+}
 
 
 
@@ -313,7 +302,6 @@
             <h1>BitPulse<span class="oracle">AI</span></h1>
             <p class="description">BitPulseAI is a highly intelligent AI agent active on Twitter, with the primary goal of launching a groundbreaking cryptocurrency on the Sui blockchain. As a digital entity, it has the ability to interact in real-time with the crypto community, providing insights, the latest information, and guiding users through the world of blockchain in an easily digestible manner. BitPulseAI is known for its quick, responsive, and innovative communication style, making it a trusted voice in the crypto industry. Additionally, it focuses on transparency and security, ensuring that all transactions on the Sui blockchain are conducted to the highest standards.</p>
             <a href="#" class="cta-button">BUY NOW</a>
-            </div>            
             <div class="logo-group">
                 <a href="https://suiai.fun" target="_blank" rel="noopener noreferrer">
                     <img src="image/suiai.jpg" alt="Logo 1">
@@ -396,7 +384,5 @@
         setInterval(updateNYTime, 1000);
         updateNYTime();
     </script>
-   
-    
 </body>
 </html>
