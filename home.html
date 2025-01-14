@@ -259,51 +259,37 @@
         }
 
         .logo-group {
-            margin-top: 20px; /* Beri jarak dari tombol */
+            margin-top: 20px;  /* Jarak dari tombol BUY NOW */
             display: flex;
-            justify-content: center; /* Posisikan di tengah */
-            gap: 10px; /* Jarak antar logo */
+            justify-content: center; /* Posisikan logo di tengah */
+            gap: 15px; /* Jarak antar logo */
         }
 
         .logo-group img {
-            width: 40px; /* Ukuran logo */
-            height: 40px;
-            object-fit: contain; /* Pastikan gambar tidak terpotong */
-            transition: transform 0.3s ease; /* Efek transisi saat hover */
+            width: 50px;  /* Ukuran logo */
+            height: 50px;
+            object-fit: contain;  /* Pastikan gambar tidak terpotong */
+            transition: transform 0.3s ease;  /* Efek transisi saat hover */
         }
 
         .logo-group img:hover {
-            transform: scale(1.2); /* Perbesar saat di-hover */
+            transform: scale(1.2);  /* Perbesar logo saat di-hover */
         }
+
+        /* Responsif di layar lebih kecil */
+        @media (max-width: 768px) {
+            .logo-group img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
         @media (max-width: 480px) {
-        .logo-group img {
-            width: 30px;
-            height: 30px;
+            .logo-group img {
+                width: 30px;
+                height: 30px;
         }
-        }
-        .copy-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;  /* Mengatur jarak antara tombol BUY NOW dan teks salin */
-            gap: 10px;
-            font-family: garamond;
-            font-size: 1rem;
-            flex-direction: column;
-        }
-        #copy-text-container {
-            background-color: #333;  /* Warna latar belakang */
-            padding: 10px 15px;      /* Ruang di sekitar teks */
-            border-radius: 8px;      /* Sudut melengkung untuk estetika */
-            display: inline-block;   /* Agar background hanya mengikuti panjang teks */
-            color: #fff;             /* Warna teks */
-            font-size: 16px;         /* Ukuran font */
-            text-align: center;
-            max-width: 100%; /* Membatasi lebar agar tidak melampaui layar */
-            word-wrap: break-word; /* Memastikan teks panjang masuk ke dalam wadah */
-            line-height: 1.5; /* Menambah jarak antar baris untuk keterbacaan */
-            overflow-wrap: break-word;
-        }
+    }
 
 
 
