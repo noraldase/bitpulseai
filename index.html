@@ -353,6 +353,33 @@
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
+        .copy-area {
+            margin-top: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .copy-area button {
+            margin-left: 10px;
+            background-color: #ff4500;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .copy-area button:hover {
+            background-color: #c747d3;
+        }
+
+
+
 
 
     </style>
@@ -371,7 +398,11 @@
                 <img src="image/logobitpulse.webp" alt="Degen Oracle Logo">
             </div>
             <h1>BitPulse<span class="oracle">AI</span></h1>
-            <a href="#" class="cta-button">BUY NOW</a>
+            <div class="copy-area">
+                <span id="copy-text">BitPulseAI - Leading the Future of Crypto</span>
+                <button onclick="copyToClipboard()">Copy</button>
+            </div>
+            <a href="#" class="cta-button">BUY NOW</a>            
             <div class="logo-group">
                 <a href="https://suiai.fun" target="_blank" rel="noopener noreferrer">
                     <img src="image/suiai.jpg" alt="Logo 1">
@@ -486,6 +517,18 @@
         roadmapPhases.forEach(phase => {
             observer.observe(phase);
         });
-    </script>
+
+        
+        function copyToClipboard() {
+        const textToCopy = document.getElementById('copy-text').textContent;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert('Text copied to clipboard!');
+        }).catch(err => {
+            console.error('Error copying text: ', err);
+        });
+    }
+</script>
+
+    
 </body>
 </html>
