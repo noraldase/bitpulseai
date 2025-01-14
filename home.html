@@ -79,8 +79,11 @@
 
         .hero .content {
             z-index: 1;
-            color: #fff;
-            padding: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px; /* Menambahkan jarak antar elemen */
         }
 
         .hero .logo img {
@@ -253,37 +256,38 @@
         }
 
     .social-links a i {
-        margin-right: 8px;
-        font-size: 20px;
-    }
+            margin-right: 8px;
+            font-size: 20px;
+        }
 
     .social-links a:hover {
-        color: #ff6a00;
-    }
+            color: #ff6a00;
+        }
 
     .logo-group {
-    margin-top: 20px; /* Beri jarak dari tombol */
-    display: flex;
-    justify-content: center; /* Posisikan di tengah */
-    gap: 10px; /* Jarak antar logo */
-}
+            margin-top: 20px; /* Beri jarak dari tombol */
+            display: flex;
+            justify-content: center; /* Posisikan di tengah */
+            gap: 10px; /* Jarak antar logo */
+            flex-wrap: wrap;
+        }
 
-.logo-group img {
-    width: 40px; /* Ukuran logo */
-    height: 40px;
-    object-fit: contain; /* Pastikan gambar tidak terpotong */
-    transition: transform 0.3s ease; /* Efek transisi saat hover */
-}
-
-.logo-group img:hover {
-    transform: scale(1.2); /* Perbesar saat di-hover */
-}
-@media (max-width: 480px) {
     .logo-group img {
-        width: 30px;
-        height: 30px;
+            width: 40px; /* Ukuran logo */
+            height: 40px;
+            object-fit: contain; /* Pastikan gambar tidak terpotong */
+            transition: transform 0.3s ease; /* Efek transisi saat hover */
     }
-}
+
+    .logo-group img:hover {
+            transform: scale(1.2); /* Perbesar saat di-hover */
+    }
+    @media (max-width: 480px) {
+    .logo-group img {
+             width: 30px;
+            height: 30px;
+        }
+    }
 
 
 
