@@ -1,428 +1,101 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <link rel="icon" type="image/x-icon" href="image/favicon.ico">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BitPulseAI</title>
+    <title>The BitPulse Revolution: AI Meets Crypto</title>
     <style>
-        /* Reset dan dasar styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1c2b42;
-            color: #fff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .oracle {
-            color: #FFD700;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            padding: 15px 20px;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 999;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .ny-time {
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .bitpulseai {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .bitpulseai .ai {
-            color: #FFD700;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: url('image/bitpulsekomputer.webp') center/cover no-repeat;
+            margin: 0;
+            background-color: black;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            height: 100vh;
+            overflow: hidden;
             position: relative;
         }
-
-        .hero::before {
-            content: '';
+        .green-screen {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background-color: #00FF00;
+            z-index: 10;
+            animation: flash 1s forwards;
         }
-
-        .hero .content {
-            z-index: 1;
-            color: #fff;
-            padding: 20px;
+        @keyframes flash {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
-
-        .hero .logo img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            transition: transform 0.3s ease;
-        }
-
-        .hero .logo img:active {
-            transform: scale(1.2);
-        }
-
-        .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 1em;
-            margin-bottom: 20px;
-        }
-
-        .cta-button {
-            background-color: #c747d3;
-            color: #000000;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-size: 14px;
+        #power-button {
+            display: none;
+            background-color: rgb(57, 243, 0);
+            color: rgb(0, 0, 0);
+            border: 2px solid white;
             border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 5;
+        }
+        .error-message {
+            position: absolute;
+            color: red;
+            font-size: 24px;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            z-index: 20;
+            opacity: 0;
+            animation: spamError 3s infinite;
         }
-
-        .cta-button:hover {
-            background-color: #ff4500;
-        }
-
-        /* Features Section */
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 40px 20px;
-            background-color: #222;
-        }
-
-        .feature {
-            width: 90%;
-            max-width: 400px;
-            margin: 20px;
-            text-align: left;
-            background-color: #333;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .feature h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .feature p, .feature li {
-            font-size: 0.9em;
-            line-height: 1.5;
-            margin-bottom: 10px;
-            color: #bbb;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #111;
-            padding: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        footer .social-links {
-            margin-bottom: 10px;
-        }
-
-        footer .social-links a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 16px;
-        }
-
-        footer .social-links a:hover {
-            color: #ff6a00;
-        }
-
-        footer p {
-            color: #bbb;
-        }
-
-        /* Responsiveness */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
+        @keyframes spamError {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0);
             }
-
-            .hero h1 {
-                font-size: 2em;
+            25% {
+                opacity: 1;
+                transform: translate(10px, 10px);
             }
-
-            .hero p {
-                font-size: 0.9em;
+            50% {
+                opacity: 0;
+                transform: translate(20px, -20px);
             }
-
-            .cta-button {
-                font-size: 12px;
-                padding: 8px 16px;
+            75% {
+                opacity: 1;
+                transform: translate(-10px, 30px);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(30px, -30px);
             }
         }
-
-        @media (max-width: 480px) {
-            .hero .logo img {
-                width: 80px;
-                height: 80px;
-            }
-
-            .hero h1 {
-                font-size: 1.8em;
-            }
-
-            .hero p {
-                font-size: 0.8em;
-            }
-
-            .features {
-                flex-direction: column;
-                padding: 20px 10px;
-            }
-
-            .feature {
-                width: 100%;
-                margin: 10px 0;
-            }
-        }
-
-        .hero .description {
-            font-size: 1.3em; /* Ukuran teks */
-            line-height: 1.5; /* Jarak antar baris teks (lebih kecil dari default 1.6) */
-            margin-bottom: 20px; /* Jarak dengan elemen di bawahnya */
-            color: #ffffff; /* Warna teks */
-            text-align: justify; /* Rata kiri-kanan */
-            max-width: 800px;
-            background-color: rgba(0, 0, 0, 0.726); /* Warna background */
-            display: block; /* Pastikan background hanya mengikuti panjang teks */
-            padding: 8px; /* Tambahkan ruang di sekitar teks */
-            border-radius: 4px; /* Sudut melengkung untuk estetika */
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            margin: 0 10px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a i {
-            margin-right: 8px;
-            font-size: 20px;
-        }
-
-        .social-links a:hover {
-            color: #ff6a00;
-        }
-
-        .logo-group {
-            margin-top: 20px; /* Beri jarak dari tombol */
-            display: flex;
-            justify-content: center; /* Posisikan di tengah */
-            gap: 10px; /* Jarak antar logo */
-        }
-
-        .logo-group img {
-            width: 40px; /* Ukuran logo */
-            height: 40px;
-            object-fit: contain; /* Pastikan gambar tidak terpotong */
-            transition: transform 0.3s ease; /* Efek transisi saat hover */
-        }
-
-        .logo-group img:hover {
-            transform: scale(1.2); /* Perbesar saat di-hover */
-        }
-        @media (max-width: 480px) {
-        .logo-group img {
-            width: 30px;
-            height: 30px;
-        }
-        }
-        .copy-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;  /* Mengatur jarak antara tombol BUY NOW dan teks salin */
-            gap: 10px;
-            font-family: garamond;
-            font-size: 1rem;
-            flex-direction: column;
-        }
-        #copy-text-container {
-            background-color: #333;  /* Warna latar belakang */
-            padding: 10px 15px;      /* Ruang di sekitar teks */
-            border-radius: 8px;      /* Sudut melengkung untuk estetika */
-            display: inline-block;   /* Agar background hanya mengikuti panjang teks */
-            color: #fff;             /* Warna teks */
-            font-size: 16px;         /* Ukuran font */
-        }
-
-
-
-
-
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="bitpulseai">BitPulse<span class="ai">AI</span></div>
-        <div class="ny-time" id="ny-time">Loading...</div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="content">
-            <div class="logo">
-                <img src="image/logobitpulse.webp" alt="Degen Oracle Logo">
-            </div>
-            <h1>BitPulse<span class="oracle">AI</span></h1>
-            <p class="description">BitPulseAI is a highly intelligent AI agent active on Twitter, with the primary goal of launching a groundbreaking cryptocurrency on the Sui blockchain. As a digital entity, it has the ability to interact in real-time with the crypto community, providing insights, the latest information, and guiding users through the world of blockchain in an easily digestible manner. BitPulseAI is known for its quick, responsive, and innovative communication style, making it a trusted voice in the crypto industry. Additionally, it focuses on transparency and security, ensuring that all transactions on the Sui blockchain are conducted to the highest standards.</p>
-            <a href="#" class="cta-button">BUY NOW</a>
-            <div class="copy-container">
-                <div id="copy-text-container">
-                <span id="copy-text">0x57e93adcecd97fc8b30fc6f124be185f292b648e324773d8fbe6650e8274790f::aida::AIDA</span>
-                <button id="copy-btn" title="Copy to clipboard">
-                    <i class="fas fa-copy"></i> Copy
-                </button>
-            </div>            
-            <div class="logo-group">
-                <a href="https://suiai.fun" target="_blank" rel="noopener noreferrer">
-                    <img src="image/suiai.jpg" alt="Logo 1">
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                    <img src="image/dexscreen.png" alt="Logo 2">
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                    <img src="image/coingecko (1).png" alt="Logo 3">
-                </a>
-            </div>
-        
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="feature">
-            <h2>Phase 1: Launch Phase</h2>
-            <p> Website Unveiling</p>
-            <li>Reveal the official website to serve as the central hub for all BitPulseAI information, updates, and community engagement.</li>
-            <p> Token Debut</p>
-            <li>The official introduction of BitPulseAI token to the market, setting the stage for a decentralized ecosystem.</li>
-            <p> Social Media Engagement</p>
-            <li>Establishing a strong presence across key social media platforms to connect with our growing community and share valuable insights.</li>
-            <p> Community Growth & Activation</p>
-            <li>Cultivating a dedicated and passionate community through events, interactive discussions, and exclusive content to build long-term engagement.</li>
-
-
-        </div>
-        <div class="feature">
-            <h2>Phase 2: Expansion</h2>
-            <p> Next-Generation AI Capabilities</p>
-            <li>Introducing cutting-edge AI features that push the boundaries of market analysis and decision-making support.</li>
-            <p> Strategic Partnership Network</p>
-            <li>Building strong alliances with key players in the crypto and blockchain ecosystems to amplify reach and drive collaborative growth.</li>
-            <p> Advanced Data Insights</p>
-            <li>Expanding the platform analytics tools to deliver deeper, more actionable insights for users, enhancing their trading strategies.</li>
-            <p> Broader Market Connectivity</p>
-            <li>Seamlessly integrating with additional market platforms and networks to broaden access to data and improve trading opportunities.</li>
-
-        </div>
-        <div class="feature">
-            <h2>Phase 3: Evolution</h2>
-            <p>AI-Powered Trading Assistant</p>
-            <li>Introducing an intelligent trading bot powered by advanced AI to automate and optimize trading strategies for all users.</li>
-            <p>Global Market Reach</p>
-            <li>Expanding our footprint across international markets, engaging with global crypto communities and adapting to regional demands.</li>
-            <p>Ecosystem Enhancement</p>
-            <li>Evolving the BitPulseAI ecosystem with additional tools, services, and integrations that empower users to navigate and grow within the crypto space</li>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://x.com/BitPulseAI" target="_blank" aria-label="Twitter">
-                <i class="fab fa-twitter"></i> Twitter
-            </a>
-            <a href="https://t.me/bitpulseai" target="_blank" aria-label="Telegram">
-                <i class="fab fa-telegram"></i> Telegram
-            </a>
-        </div>
-        <p>&copy; 2025 BitPulseAI. All rights reserved.</p>
-    </footer>
+    <div class="green-screen" id="greenScreen"></div>
+    <button id="power-button" onclick="goToHome()">TURN ON</button>
 
     <script>
-        function updateNYTime() {
-            const options = {
-                timeZone: 'America/New_York',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-            };
 
-            const nyTime = new Date().toLocaleTimeString('en-US', options);
-            document.getElementById('ny-time').textContent = nyTime;
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('greenScreen').style.display = 'none';
+                document.getElementById('power-button').style.display = 'block';
+                startSpammingErrors();  // Start showing error messages
+            }, 1000); // 1 second delay
+        };
+
+        function goToHome() {
+            window.location.href = 'home.html';
         }
 
-        setInterval(updateNYTime, 1000);
-        updateNYTime();
+
     </script>
-    <script>
-        document.getElementById('copy-btn').addEventListener('click', function () {
-            const copyText = document.getElementById('copy-text').textContent;
-    
-            // Salin teks ke clipboard
-            navigator.clipboard.writeText(copyText).then(() => {
-                alert('Text copied to clipboard: ' + copyText);
-            }).catch(err => {
-                alert('Failed to copy text: ' + err);
-            });
-        });
-    </script>
-    
 </body>
 </html>
